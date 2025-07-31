@@ -4,6 +4,7 @@ import Webcam from "react-webcam";
 
 export default function CameraComponent() {
 
+    const [startCam, setStartCam] = useState(false);
     const webcamRef = useRef(null);
     const [permissionsGranted, setPermissionsGranted] = useState({
         webcam: false,
@@ -13,27 +14,29 @@ export default function CameraComponent() {
     const videoConstraints = {
         width: 1280,
         height: 720,
-        minScreenshotHeight: 720,
-        minScreenshotWidth: 1280
+        facingMode: 'user'
     };
 
 
     return (
         <>
-            <Webcam
-                audio={false}
-                ref={webcamRef}
-                screenshotFormat="image/jpeg"
-                videoConstraints={videoConstraints}
-                height={600}
-                width={1280}
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "2%",
-                    objectFit: "cover",
-                }}
-            />
+            {!startCam && <button onClick={() => setStartCam(true)}>Enable Camera</button>}
+            {startCam &&
+                <Webcam
+                    audio={false}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={videoConstraints}
+                    height={600}
+                    width={1280}
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "2%",
+                        objectFit: "cover",
+                    }}
+                />
+            }
         </>
     );
 }
