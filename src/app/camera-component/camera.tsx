@@ -20,15 +20,15 @@ export default function CameraComponent() {
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => alert("Camera works"))
-            .catch(err => alert("Camera error:" + JSON.stringify(err)));
+            .catch(err => alert("Camera error:" + err.message));
     });
 
 
 
     return (
         <>
-            {!startCam && <button onClick={() => setStartCam(true)}>Enable Camera</button>}
-            {startCam &&
+            {/* {!startCam && <button onClick={() => setStartCam(true)}>Enable Camera</button>} */}
+            {!startCam &&
                 <Webcam
                     audio={false}
                     ref={webcamRef}
