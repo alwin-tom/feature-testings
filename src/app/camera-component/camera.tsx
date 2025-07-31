@@ -20,7 +20,7 @@ export default function CameraComponent() {
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => alert("Camera works"))
-            .catch(err => alert("Camera error:"));
+            .catch(err => alert("Camera error:" + JSON.stringify(err)));
     });
 
 
