@@ -13,7 +13,6 @@ export default function CameraComponent() {
     const videoConstraints = {
         width: 1280,
         height: 720,
-        facingMode: "user",
         minScreenshotHeight: 720,
         minScreenshotWidth: 1280
     };
