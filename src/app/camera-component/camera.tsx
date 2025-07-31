@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 
 export default function CameraComponent() {
@@ -16,6 +16,13 @@ export default function CameraComponent() {
         height: 720,
         facingMode: 'user'
     };
+
+    useEffect(() => {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => alert("Camera works"))
+            .catch(err => alert("Camera error:"));
+    });
+
 
 
     return (
