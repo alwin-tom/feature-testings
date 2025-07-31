@@ -4,7 +4,6 @@ import Webcam from "react-webcam";
 
 export default function CameraComponent() {
 
-
     const webcamRef = useRef(null);
     const [permissionsGranted, setPermissionsGranted] = useState({
         webcam: false,
