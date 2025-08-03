@@ -4,7 +4,7 @@ import Webcam from "react-webcam";
 
 export default function CameraComponent() {
 
-    const [startCam, setStartCam] = useState(false);
+    const [startCam, setStartCam] = useState(true);
     const [camNumber, setCamNumber] = useState(0);
     const [currentCam, setCurrentCam] = useState("front");
     const webcamRef = useRef(null);
