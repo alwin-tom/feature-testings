@@ -22,6 +22,7 @@ export default function CameraComponent() {
     };
 
     useEffect(() => {
+        alert(isMobile())
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
                 alert("Camera works");
@@ -78,7 +79,23 @@ export default function CameraComponent() {
                 minScreenshotWidth: 1280
             };
         }
+    }    
+    const isMobile = () => {
+        const toMatch = [
+            /Android/i,
+            /webOS/i,
+            /iPhone/i,
+            /iPad/i,
+            /iPod/i,
+            /BlackBerry/i,
+            /Windows Phone/i
+        ];
+        
+        return toMatch.some((toMatchItem) => {
+            return navigator.userAgent.match(toMatchItem);
+        });
     }
+
 
     return (
         <>
