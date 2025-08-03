@@ -22,10 +22,10 @@ export default function CameraComponent() {
     };
 
     useEffect(() => {
-        alert(isMobile())
+        // alert(isMobile())
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(stream => {
-                alert("Camera works");
+                // alert("Camera works");
             })
             .catch(err => alert("Camera error:" + err.message));
 
