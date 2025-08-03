@@ -5,31 +5,84 @@ import Webcam from "react-webcam";
 export default function CameraComponent() {
 
     const [startCam, setStartCam] = useState(false);
+    const [camNumber, setCamNumber] = useState(0);
+    const [currentCam, setCurrentCam] = useState("front");
     const webcamRef = useRef(null);
     const [permissionsGranted, setPermissionsGranted] = useState({
         webcam: false,
         location: false,
     });
 
-    const videoConstraints = {
+    let videoConstraints: any = {
         width: 1280,
         height: 720,
         facingMode: "user",
         minScreenshotHeight: 720,
         minScreenshotWidth: 1280
-      };
+    };
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => alert("Camera works"))
+            .then(stream => {
+                alert("Camera works");
+            })
             .catch(err => alert("Camera error:" + err.message));
+
+        navigator.mediaDevices.enumerateDevices().then(gotDevices)
+            .then((availableVideoInputs: any) => {
+                setCamNumber(availableVideoInputs)
+            })
+            .catch((err) => {
+                alert("Error");
+                console.log(err);
+            })
+
     });
 
+    const gotDevices = (mediaDevices: any) =>
+        new Promise((resolve, reject) => {
+            const availableVideoInputs: any = []
+            mediaDevices.forEach((mediaDevice: any) => {
+                if (mediaDevice.kind === 'videoinput') {
+                    availableVideoInputs.push({
+                        deviceId: mediaDevice.deviceId,
+                        label: mediaDevice.label
+                    })
+                }
+            })
 
+            if (availableVideoInputs.length > 0) {
+                resolve(availableVideoInputs.length)
+            } else {
+                reject(new Error('ERR::NO_MEDIA_TO_STREAM'))
+            }
+        });
+
+    const toggleCamera = () => {
+        if (currentCam === "back") {
+            videoConstraints = {
+                width: 1280,
+                height: 720,
+                facingMode: "user",
+                minScreenshotHeight: 720,
+                minScreenshotWidth: 1280
+            };
+            setCurrentCam("front");
+        } else {
+            setCurrentCam("back");
+            videoConstraints = {
+                width: 1280,
+                height: 720,
+                facingMode: { exact: 'environment' },
+                minScreenshotHeight: 720,
+                minScreenshotWidth: 1280
+            };
+        }
+    }
 
     return (
         <>
-            {/* {!startCam && <button onClick={() => setStartCam(true)}>Enable Camera</button>} */}
+            {camNumber && camNumber > 1 && <button onClick={() => toggleCamera()}>Toggle</button>}
             {!startCam &&
                 <Webcam
                     audio={false}
