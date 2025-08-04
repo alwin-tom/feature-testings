@@ -17,7 +17,7 @@ export default function CameraComponent() {
         width: 1280,
         height: 720,
         //facingMode: { exact: 'environment' },
-        facingMode: "user"
+        facingMode: "environment"
     };
 
     useEffect(() => {
