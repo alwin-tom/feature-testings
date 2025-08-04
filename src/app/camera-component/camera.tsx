@@ -13,14 +13,14 @@ export default function CameraComponent() {
 
       const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
 
-  const handleClick = React.useCallback(() => {
+  const handleClick = () => {
     setFacingMode(
       prevState =>
         prevState === FACING_MODE_USER
           ? FACING_MODE_ENVIRONMENT
           : FACING_MODE_USER
     );
-  }, []);
+  };
 
     return (
         <>
