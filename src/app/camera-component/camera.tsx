@@ -16,7 +16,8 @@ export default function CameraComponent() {
     let videoConstraints: any = {
         width: 1280,
         height: 720,
-        facingMode: { exact: 'environment' }
+        //facingMode: { exact: 'environment' },
+        facingMode: "user"
     };
 
     useEffect(() => {
