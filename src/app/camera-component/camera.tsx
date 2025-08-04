@@ -7,6 +7,7 @@ export default function CameraComponent() {
     const [startCam, setStartCam] = useState(true);
     const [camNumber, setCamNumber] = useState(0);
     const [currentCam, setCurrentCam] = useState("front");
+    const [availableCams, setAvailableCams] = useState([]);
     const webcamRef = useRef(null);
     const [permissionsGranted, setPermissionsGranted] = useState({
         webcam: false,
@@ -30,7 +31,7 @@ export default function CameraComponent() {
 
         navigator.mediaDevices.enumerateDevices().then(gotDevices)
             .then((availableVideoInputs: any) => {
-                console.log(availableVideoInputs)
+                setAvailableCams(availableVideoInputs)
                 setCamNumber(availableVideoInputs.length)
             })
             .catch((err) => {
