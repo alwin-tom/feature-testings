@@ -11,7 +11,7 @@ const videoConstraints = {
 
 export default function CameraComponent() {
 
-      const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
+      const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
 
   const handleClick = React.useCallback(() => {
     setFacingMode(
