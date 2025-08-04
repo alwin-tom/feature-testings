@@ -16,8 +16,8 @@ export default function CameraComponent() {
     let videoConstraints: any = {
         width: 1280,
         height: 720,
-        //facingMode: { exact: 'environment' },
-        facingMode: "environment"
+        facingMode: { exact: 'environment' },
+        //facingMode: "user"
     };
 
     useEffect(() => {
@@ -27,16 +27,17 @@ export default function CameraComponent() {
                 // alert("Camera works");
             })
             .catch(err => alert("Camera error:" + err.message));
-/**
+
         navigator.mediaDevices.enumerateDevices().then(gotDevices)
             .then((availableVideoInputs: any) => {
-                setCamNumber(availableVideoInputs)
+                console.log(availableVideoInputs)
+                setCamNumber(availableVideoInputs.length)
             })
             .catch((err) => {
                 alert("Error");
                 console.log(err);
             })
-**/
+
     });
 
     const gotDevices = (mediaDevices: any) =>
@@ -52,7 +53,7 @@ export default function CameraComponent() {
             })
 
             if (availableVideoInputs.length > 0) {
-                resolve(availableVideoInputs.length)
+                resolve(availableVideoInputs)
             } else {
                 reject(new Error('ERR::NO_MEDIA_TO_STREAM'))
             }
@@ -102,6 +103,7 @@ export default function CameraComponent() {
 
     return (
         <>
+            {JSON.stringify(availableVideoInputs)}
             {camNumber && camNumber > 1 && <button onClick={() => toggleCamera()}>Toggle</button>}
        
                 <Webcam
