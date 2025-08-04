@@ -104,7 +104,7 @@ export default function CameraComponent() {
 
     return (
         <>
-            {JSON.stringify(availableVideoInputs)}
+            {JSON.stringify(availableCams)}
             {camNumber && camNumber > 1 && <button onClick={() => toggleCamera()}>Toggle</button>}
        
                 <Webcam
