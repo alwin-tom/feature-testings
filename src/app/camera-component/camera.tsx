@@ -46,6 +46,7 @@ export default function CameraComponent() {
             const availableVideoInputs: any = []
             mediaDevices.forEach((mediaDevice: any) => {
                 if (mediaDevice.kind === 'videoinput') {
+                    console.log(mediaDevice)
                     availableVideoInputs.push({
                         deviceId: mediaDevice.deviceId,
                         label: mediaDevice.label
