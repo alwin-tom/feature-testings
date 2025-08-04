@@ -104,8 +104,7 @@ export default function CameraComponent() {
     return (
         <>
             {camNumber && camNumber > 1 && <button onClick={() => toggleCamera()}>Toggle</button>}
-            {startCam &&  <button onClick={() => startCamera()}>Start Cam</button>}
-            {startCam &&
+       
                 <Webcam
                     audio={false}
                     ref={webcamRef}
@@ -120,7 +119,7 @@ export default function CameraComponent() {
                         objectFit: "cover",
                     }}
                 />
-            }
+            
         </>
     );
 }
