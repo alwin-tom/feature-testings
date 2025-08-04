@@ -26,7 +26,7 @@ export default function CameraComponent() {
                 // alert("Camera works");
             })
             .catch(err => alert("Camera error:" + err.message));
-
+/**
         navigator.mediaDevices.enumerateDevices().then(gotDevices)
             .then((availableVideoInputs: any) => {
                 setCamNumber(availableVideoInputs)
@@ -35,7 +35,7 @@ export default function CameraComponent() {
                 alert("Error");
                 console.log(err);
             })
-
+**/
     });
 
     const gotDevices = (mediaDevices: any) =>
