@@ -1,5 +1,5 @@
 //import CameraComponent from "./camera-component/camera";
-import CameraComponent from "./camera-component/camera-live";
+import WebcamWithCapture from "./camera-component/camera-live";
 
 export default function Home() {
   return (
