@@ -5,7 +5,11 @@ import Webcam from "react-webcam";
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
 
-
+const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: FACING_MODE_USER
+};
 
 const WebcamWithCapture = () => {
   const webcamRef = useRef(null);
@@ -19,11 +23,7 @@ const WebcamWithCapture = () => {
   const [loading, setLoading] = useState('')
   const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
   // Webcam constraints
-  const videoConstraints = {
-    width: 1280,
-    height: 720,
-    facingMode: FACING_MODE_USER
-  };
+  
 
   // Capture image
   const capture = () => {
@@ -182,7 +182,10 @@ const WebcamWithCapture = () => {
                         audio={false}
                         ref={webcamRef}
                         screenshotFormat="image/jpeg"
-                        videoConstraints={videoConstraints}
+                        videoConstraints={{
+                          ...videoConstraints,
+                          facingMode
+                        }}
                         height={600}
                         width={600}
                         style={{
