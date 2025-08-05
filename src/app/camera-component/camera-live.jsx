@@ -1,9 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
-import "./capture-image.scss";
-import { getUserDetails, isUserLoggedIn } from "../../services/token-service";
+
+
 import { useNavigate } from "react-router-dom";
-import useAxiosInterceptors from '../../config/axios-config';
+
 import { toast } from "react-toastify";
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
@@ -159,57 +159,6 @@ const WebcamWithCapture = () => {
     };
   }
 
-  const submitImages = () => {
-    navigator.geolocation
-      .getCurrentPosition(
-        (data) => {
-          console.log(data.coords.latitude);
-          console.log(data.coords.latitude);
-          console.log(new Date(data.timestamp));
-          setLoading(true);
-          useAxiosInterceptors.post(`data/v1`, createRequestPayload())
-            .then(res => {
-              if (res.data.status == 'SUCCESS') {
-                toast.success("Data captured successfully", {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: 0,
-                  type: "success"
-                });
-                setCapturedImages([]);
-                navigate('/confirmation', {
-                  state: {
-                    status: res.data.status,
-                    submissionId: res.data.uploadId
-                  }
-                })
-              } else {
-                toast.error("Invalid credentials", {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: 0,
-                  type: "warning"
-                });
-                // navigate("/certificates");
-              }
-            })
-            .catch(ex => {
-              console.log(ex)
-            })
-            .finally(() => {
-              setLoading(false);
-            });
-
-        });
-  }
   const handleClick = () => {
     setFacingMode(
       prevState =>
@@ -310,7 +259,7 @@ const WebcamWithCapture = () => {
                       )}
                       {capturedImages.length > 0 && (
                         <div className="col-lg-12 text-center mt-4">
-                          <button onClick={submitImages} className="btn btn-primary">Submit</button>
+                          <button className="btn btn-primary">Submit</button>
                         </div>
                       )}
                     </div>
