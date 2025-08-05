@@ -1,17 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 
-
-import { useNavigate } from "react-router-dom";
-
-import { toast } from "react-toastify";
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
 
 
 
 const WebcamWithCapture = () => {
-  const navigate = useNavigate();
   const webcamRef = useRef(null);
   const [capturedImages, setCapturedImages] = useState([]);
   const [location, setLocation] = useState(null);
@@ -39,14 +34,8 @@ const WebcamWithCapture = () => {
 
   // Request location permission
   useEffect(() => {
-    if (isUserLoggedIn()) {
       checkWebcamPermissionGranted();
       checkLocationPermissionGranted();
-      setUserDetails(getUserDetails());
-    } else {
-      navigate("/login")
-    }
-
   }, []);
 
   const checkWebcamPermissionGranted = () => {
@@ -231,12 +220,7 @@ const WebcamWithCapture = () => {
                           </div>
 
                         </div>
-                        <div className="col-lg-4">
-                          <div className="rounded shadow text-data p-3 text-center">
-                            <p className="text-muted text-heading">PF Number</p>
-                            <p className="">{userDetails.pfNumber}</p>
-                          </div>
-                        </div>
+                       
                       </div>
                     </div>
                     <div className="row">
@@ -268,10 +252,7 @@ const WebcamWithCapture = () => {
               </div>
 
             ) : (
-              <div className="col-lg-12 text-center mt-5">
-                <p>Permissions not enabled. Please enable location and camera permissions to continue.</p>
-                <button onClick={refreshPage} className="btn btn-warning">I have enabled the permissions. Refresh now</button>
-              </div>
+              <></>
             )}
           </div>
         </div>
